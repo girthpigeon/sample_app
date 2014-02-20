@@ -1,0 +1,3 @@
+<% provide(:title, 'Contact') %>
+<h1>Contact Us </h1>
+<p> If you have questions or concerns voice them send them to us at grizzchef@outlook.com </p>

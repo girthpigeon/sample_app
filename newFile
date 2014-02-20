@@ -1,0 +1,24 @@
+Script started on Mon Feb 17 15:19:06 2014
+[?1034hbash-3.2$ console[K[K[K[K[K[K[Krails console
+        SECURITY WARNING: No secret option provided to Rack::Session::Cookie.
+        This poses a security threat. It is strongly recommended that you
+        provide a secret to prevent exploits that may be possible from crafted
+        cookies. This will not be supported in future versions of Rack, and
+        future versions will even invalidate your existing user cookies.
+
+        Called from: /Users/admin/.rvm/gems/ruby-1.9.3-p484@rails3tutorial2ndEd/gems/actionpack-3.2.3/lib/action_dispatch/middleware/session/abstract_store.rb:28:in `initialize'.
+
+Loading development environment (Rails 3.2.3)
+[?1034h1.9.3-p484 :001 > ^C
+1.9.3-p484 :001 > ^C
+1.9.3-p484 :001 > 
+1.9.3-p484 :002 >   
+1.9.3-p484 :003 >   exit
+bash-3.2$ sdfsadf[K[K[K[K[K[K[Kls
+Gemfile		README.md	config		doc		newFile		spec
+Gemfile.lock	Rakefile	config.ru	lib		public		tmp
+Gemfile~	app		db		log		script		vendor
+bash-3.2$ 
+bash-3.2$ emacs[K[K[K[K[Kgit check[K[K[K[K[K[K[K[K[Kgit commit "chapter four changes"
+error: pathspec 'chapter four changes' did not match any file(s) known to git.
+bash-3.2$ 
