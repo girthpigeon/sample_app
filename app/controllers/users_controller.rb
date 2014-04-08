@@ -17,18 +17,27 @@ class UsersController < ApplicationController
   
   def destroy
       User.find(params[:id]).destroy
-      flash[:success] = "User deleted."
+      unless current_user?(user)
+          user.destroy
+          flash[:success] = "User deleted."
+      else
+          flash[:error] = "You can't destroy yourself"
+      end
       redirect_to users_url
   end
 
   def create
-      @user = User.new(params[:user])
-    if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
-    else
-      render 'new'
+      if current_user
+          redirect_to root_path
+      else
+          @user = User.new(params[:user])
+      if @user.save
+        sign_in @user
+        flash[:success] = "Welcome to the Sample App!"
+        redirect_to @user
+      else
+        render 'new'
+      end
     end
   end
 
@@ -49,11 +58,15 @@ class UsersController < ApplicationController
   private
   
   def user_params
+      if current_user && current_user.admin?
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      else
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      end
   end
   
   def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to(root_path) unless current_user.admin?
   end
   
     def signed_in_user
