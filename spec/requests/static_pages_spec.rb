@@ -18,6 +18,18 @@ describe "StaticPages" do
       
       describe "for signed-in users" do
           let(:user) { FactoryGirl.create(:user) }
+          user2 = FactoryGirl.create(:user)
+          
+          describe "should not display delete for other user's microposts" do
+              before do
+                  FactoryGirl.create(:micropost, user: user2)
+                  sign_in user
+                  visit root_path
+              end
+              user2.microposts.each do |item|
+                  page.should_not have_content("delete")
+              end
+          end
           
           #exercise 1
           describe "micropost should be singular" do
@@ -47,6 +59,7 @@ describe "StaticPages" do
           describe "should have micropost count and pluralize" do
               it {should have_content('31 microposts') }
           end
+          
       end
     end
   
