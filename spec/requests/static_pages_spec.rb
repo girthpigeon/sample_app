@@ -18,17 +18,34 @@ describe "StaticPages" do
       
       describe "for signed-in users" do
           let(:user) { FactoryGirl.create(:user) }
+          
+          #exercise 1
+          describe "micropost should be singular" do
+              before { FactoryGirl.create(:micropost, user: user) }
+              it { should have_content('1 micropost') }
+          end
+              
           before do
-              FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
-              FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
+              31.times { FactoryGirl.create(:micropost, user: user) }
               sign_in user
               visit root_path
           end
           
+          #exercise 2 changed this
           it "should render the user's feed" do
-              user.feed.each do |item|
+              user.feed[1..28].each do |item|
                   page.should have_selector("li##{item.id}", text: item.content)
               end
+          end
+          
+          #exercise 2
+          it "should paginate after 31" do
+              page.should have_selector('div.pagination')
+          end
+          
+          #exercise 1
+          describe "should have micropost count and pluralize" do
+              it {should have_content('31 microposts') }
           end
       end
     end
